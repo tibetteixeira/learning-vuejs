@@ -1,0 +1,26 @@
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+	<p>{{ message1 }}</p>
+	<p>{{ message2 }}</p>
+	<p>{{ saudacao() }}</p>
+	<a v-bind:href="link">Clique aqui</a>
+</div>
+
+<script>
+	const { createApp, ref } = Vue
+
+	createApp({
+		setup() {
+			const message1 = 'Hello VueJS 1!'
+			const message2 = 'Hello VueJS 2!'
+			const saudacao = () => 'Bom aprendizado!'
+			const link = 'https://www.google.com.br'
+
+			return {
+				message1, message2, saudacao, link
+			}
+		}
+	}).mount('#app')
+
+</script>

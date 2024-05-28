@@ -1,0 +1,45 @@
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+  <div v-on:mousemove="mouseMap">
+    <p v-once>{{ contador }}</p>
+    <p>{{ contador }}</p>
+    <button v-on:click="somar(5, $event)">Somar</button>
+    <div>
+      <p>Mouse: {{ x }} | {{ y }}</p>
+      <p v-on:mousemove="parar">PARAR AQUI!</p>
+      <p>CONTINUAR!</p>
+      <p v-on:mousemove.stop="">PARAR AQUI TAMBEM!</p>
+    </div>
+    <a v-on:click.prevent="" href="http://www.google.com">Google</a>
+    <br />
+    <input type="text" v-on:keyup.enter="alertar">
+  </div>
+</div>
+
+<script>
+  const {createApp, ref} = Vue
+  
+  createApp({
+    setup() {
+      const contador = ref(0)
+      const x = ref(0)
+      const y = ref(0)
+      const somar = (passo, e) => {
+        console.log(passo, e)
+        contador.value += passo
+      }
+      const mouseMap = (e) => {
+        x.value = e.clientX
+        y.value = e.clientY
+      }
+      const parar = (e) => e.stopPropagation()
+      const alertar = () => alert('Ok')
+      
+      return {
+        contador, somar, mouseMap, x, y, parar, alertar
+      }
+    }
+  }).mount('#app')
+
+</script>

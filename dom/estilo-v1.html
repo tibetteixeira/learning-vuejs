@@ -1,0 +1,49 @@
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<style>
+  #app {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .demo {
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+  }
+  
+  .c1 {
+    background-color: red;
+  }
+  
+  .c2 {
+    background-color: green;
+  }
+  
+  .c3 {
+    background-color: blue;
+  }
+</style>
+
+<div id="app">
+  <div class="demo" :class="{c1: aplicaC1}" @click="aplicaC1 = !aplicaC1"></div>
+  <div class="demo" :class="{c2: aplicaC2}" @click="aplicaC2 = !aplicaC2"></div>
+  <div class="demo" :class="{c3: aplicaC3}" @click="aplicaC3 = !aplicaC3"></div>
+</div>
+
+<script>
+  const {createApp, ref} = Vue
+  
+  createApp({
+    setup() {
+      const aplicaC1 = ref(false)
+      const aplicaC2 = ref(false)
+      const aplicaC3 = ref(false)
+      
+      return {
+        aplicaC1, aplicaC2, aplicaC3
+      }
+    }
+  }).mount('#app')
+
+</script>

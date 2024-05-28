@@ -1,0 +1,32 @@
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+  <div v-on:mousemove="mouseMap">
+    <p v-once>{{ contador }}</p>
+    <p>{{ contador }}</p>
+    <button v-on:click="somar">Somar 1</button>
+    <p >Mouse: {{ x }} | {{ y }}</p>
+  </div>
+</div>
+
+<script>
+  const {createApp, ref} = Vue
+  
+  createApp({
+    setup() {
+      const contador = ref(1)
+      const x = ref(0)
+      const y = ref(0)
+      const somar = () => contador.value++
+      const mouseMap = (e) => {
+        x.value = e.clientX
+        y.value = e.clientY
+      }
+      
+      return {
+        contador, somar, mouseMap, x, y
+      }
+    }
+  }).mount('#app')
+
+</script>

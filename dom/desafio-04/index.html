@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="styles.css">
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="desafio">
+  <h2>#01</h2>
+  <div>
+    <button @click="iniciarEfeito">Iniciar Efeito</button>
+    <div id="efeito" :class="efeito"></div>
+  </div>
+  
+  <h2>#02</h2>
+  <div :class="['girar', 'destaque']">Estou com classe CSS :D</div>
+  
+  <h2>#03</h2>
+  <div>
+    <input type="text" v-model="meuEstilo">
+    <div :class="[meuEstilo, 'efeito']"></div>
+  </div>
+  
+  <h2>#04</h2>
+  <div>
+    <input type="text" v-model="meuEstilo2">
+    <input type="text" v-model="giraStr">
+    <div :class="[meuEstilo2, 'efeito', {girar}]"></div>
+  </div>
+  
+  <h2>#05</h2>
+  <div>
+    <input type="text" v-model="cor">
+    <div :class="['efeito']" :style="{backgroundColor: cor}"></div>
+  </div>
+  
+  <h2>#06</h2>
+  <div>
+    <button @click="iniciarProgresso">Iniciar</button>
+    <div :style="barra"></div>
+  </div>
+</div>
+<script src="app.js"></script>

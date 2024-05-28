@@ -1,0 +1,39 @@
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+  <p>{{ contador }}</p>
+  <p>{{ resultado }}</p>
+  <button v-on:click="somar">Somar</button>
+  <button v-on:click="diminuir">Diminuir</button>
+  
+  <p>{{ contador2 }}</p>
+  <button v-on:click="somar2">Somar 2</button>
+</div>
+
+<script>
+  const { createApp, ref, computed, watch } = Vue
+  createApp({
+    setup() {
+      const contador = ref(1)
+      const contador2 = ref(0)
+      const resultado = computed(() => {
+        console.log('Calculando...')
+        return contador.value > 5 ? 'Maior que cinco' : 'Menor que cinco'
+      })
+      const somar = () => contador.value++
+      const somar2 = () => contador2.value += 2
+      const diminuir = () => contador.value--
+      watch(contador2, (novoValor, valorAntigo) => {
+        console.log(novoValor, ' | ', valorAntigo)
+        setTimeout(() => {
+          contador2.value = 0
+        }, 2000)
+      })
+      
+      return {
+        contador, somar, resultado, diminuir, contador2, somar2
+      }
+    }
+  }).mount('#app')
+
+</script>

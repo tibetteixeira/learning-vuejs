@@ -1,0 +1,40 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+  <ul>
+    <li v-for="(cor, i) in cores">{{ i + 1 }} - {{ cor }}</li>
+  </ul>
+  <hr>
+  <ul>
+    <li v-for="pessoa in pessoas">{{ pessoa }}</li>
+  </ul>
+  <hr>
+  <ul>
+    <li v-for="pessoa in pessoas">
+      <p v-for="(valor, chave) in pessoa">
+        {{ chave }} => {{ valor }}
+      </p>
+    </li>
+  </ul>
+  <hr>
+  <span v-for="n in 10">| {{ n }} |</span>
+  <br>
+  <span v-for="n in 10">| {{ n * 2 }} |</span>
+</div>
+
+<script>
+  const {createApp, ref} = Vue
+  
+  createApp({
+    setup() {
+      const cores = ['vermelho', 'verde', 'azul', 'laranja']
+      const pessoas = [
+        {nome: 'Gal', idade: 22, peso: 46},
+        {nome: 'Gil', idade: 25, peso: 55},
+      ]
+      
+      return {cores, pessoas}
+    }
+  }).mount('#app')
+</script>

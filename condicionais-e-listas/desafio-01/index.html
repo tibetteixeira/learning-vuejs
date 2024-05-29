@@ -1,0 +1,43 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="desafio">
+  <h2>#01</h2>
+  <div>
+    <button @click="mostrar = !mostrar">{{ mostrar ? 'Esconder' : 'Mostrar'}}</button>
+    <p v-if="mostrar">Você quer me ver ...</p>
+    <p v-else>...ou eu</p>
+    <p v-show="mostrar">Você quer me ver ...</p>
+    <p v-show="!mostrar">...ou eu</p>
+  </div>
+  
+  <h2>#02</h2>
+  <ul>
+    <li v-for="(v, i) in array">{{ i }} - {{ v }}</li>
+  </ul>
+  
+  <!-- 3) Imprimir todos os pares de valor-chave do objeto a seguir:
+    Imprima também o índice de cada item. -->
+  <h2>#03</h2>
+  <ul>
+    <li v-for="(livro, i) in livros">{{ i }} -
+      <p v-for="(v, k) in livro"> {{ k }} => {{ v }} </p>
+    </li>
+  </ul>
+  
+  <h2>#04</h2>
+  <ul>
+    <li v-for="(valor, chave) in aluno">
+      <template v-if="chave !== 'notas'">
+        {{valor}}
+      </template>
+      <template v-else>
+        Notas:
+        <ul>
+          <li v-for="nota in valor">{{ nota }}</li>
+        </ul>
+      </template>
+    </li>
+  </ul>
+</div>
+<script src="app.js"></script>

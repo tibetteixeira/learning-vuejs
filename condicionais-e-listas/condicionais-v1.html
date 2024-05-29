@@ -1,0 +1,23 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+  <p v-if="logado">Usuário logado: {{ nome }}</p>
+  <p v-else>Nenhum usuário logado</p>
+  <button @click="logado = !logado">{{ logado ? 'Sair' : 'Entrar'}}</button>
+</div>
+
+<script>
+  const {createApp, ref} = Vue
+  
+  createApp({
+    setup() {
+      const nome = ref('Tibet')
+      const logado = ref(false)
+      
+      return {
+        nome, logado
+      }
+    }
+  }).mount('#app')
+</script>

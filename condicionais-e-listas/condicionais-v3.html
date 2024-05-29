@@ -1,0 +1,29 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+  <template v-if="logado">
+    <p>Usuário logado: {{ nome }}</p>
+    <p>Perfil: ADMIN</p>
+  </template>
+  <p v-else-if="anonimo && !logado">Navegando como anônimo</p>
+  <p v-else>Nenhum usuário logado</p>
+  <button @click="logado = !logado">{{ logado ? 'Sair' : 'Entrar'}}</button>
+  <input type="checkbox" v-model="anonimo">
+</div>
+
+<script>
+  const {createApp, ref, computed} = Vue
+  
+  createApp({
+    setup() {
+      const nome = ref('Tibet')
+      const logado = ref(false)
+      const anonimo = ref(true)
+      
+      return {
+        nome, logado, anonimo
+      }
+    }
+  }).mount('#app')
+</script>

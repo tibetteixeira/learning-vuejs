@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt_br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+          crossorigin="anonymous"></script>
+  
+  <title>Projeto 1 - RPG</title>
+</head>
+<body>
+<div id="app" class="row">
+  <div class="col-md-12">
+    <div class="container">
+      <div class="row secao">
+        <div class="col-md-6 personagem " id="jogador">
+          <label for="jogador">Jogador</label>
+          <div :style="barraVidaJogador"></div>
+          <div id="vidaJogador">{{ vidaJogador >= 0 ? vidaJogador : 0 }}%</div>
+        </div>
+        <div class="col-md-6 personagem" id="monstro">
+          <label for="monstro">Monstro</label>
+          <div :style="barraVidaMonstro"></div>
+          <div id="vidaMonstro">{{ vidaMonstro >= 0 ? vidaMonstro : 0 }}%</div>
+        </div>
+      </div>
+      
+      <div class="row resultado secao" v-if="jogoIniciou && jogoAcabou">
+        <div class="ganhou" v-if="vidaJogador > vidaMonstro && vidaJogador > 0">Você ganhou :)</div>
+        <div class="perdeu" v-else>Você perdeu :(</div>
+      </div>
+      
+      <div class="row justify-content-center secao">
+        <div v-if="!jogoIniciou" class="d-flex justify-content-between w-50">
+            <button class="btn btn-primary" @click="iniciarJogo">Iniciar novo jogo</button>
+        </div>
+        
+        <div v-if="jogoIniciou" class="d-flex justify-content-between w-50">
+          <button id="ataque" class="btn btn-secondary" @click="atacar" :disabled="jogoAcabou">Ataque</button>
+          <button id="ataqueEspecial" class="btn btn-secondary" @click="atacarEspecial" :disabled="jogoAcabou">Ataque especial</button>
+          <button id="curar" class="btn btn-secondary" @click="curar" :disabled="jogoAcabou">Curar</button>
+          <button id="desistir" :class="['btn', tipoBotao]" @click="desistir">{{ vidaJogador > vidaMonstro && vidaJogador > 0 && jogoAcabou ? 'Concluir' : 'Desistir' }}</button>
+        </div>
+      </div>
+      
+      <div class="row secao" id="log" v-if="jogoIniciou">
+        <ul v-if="acoes.length > 0">
+          <li v-for="log in acoes">
+            <div class="personagem-acao" :class="log.personagem">{{ log.personagem }} {{ log.tipo }} em {{ log.acao }}</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>

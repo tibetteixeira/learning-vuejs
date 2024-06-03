@@ -1,0 +1,44 @@
+.secao {
+  margin: 30px auto;
+}
+
+.resultado {
+  font-size: 20px;
+  text-align: center;
+}
+
+.ganhou {
+  color: #449933;
+}
+
+.perdeu {
+  color: #994433;
+}
+
+.acao {
+  display: flex;
+  justify-content: space-around;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin: 2px;
+}
+
+.personagem-acao {
+  padding: 5px;
+  text-align: center;
+}
+
+.jogador {
+  background-color: #99ff88;
+}
+
+.monstro {
+  background-color: #ff9988;
+}
